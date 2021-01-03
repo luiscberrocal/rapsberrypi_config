@@ -6,6 +6,7 @@
 - name: Setting variables
   set_fact:
     docker_gpg_key: "./output/docker_gpg.txt"
+    download_url: " https://download.docker.com/linux/raspbian"
 - name: Install required system packages
   become: yes
   apt:
@@ -15,7 +16,7 @@
   loop: [ 'vim', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
 - name: Download GPG key
   get_url:
-    url: https://download.docker.com/linux/debian/gpg
+    url: "{{ download_url }}/gpg"
     dest: "{{ docker_gpg_key }}"
 - name: Add Apt signing key on remote server to keyring
   become: yes
@@ -28,7 +29,7 @@
 - name: Add specified repository into sources list
   become: yes
   apt_repository:
-    repo: "deb [arch=armhf] https://download.docker.com/linux/debian {{lsb_release}} stable"
+    repo: "deb [arch=armhf] {{download_url}} {{lsb_release}} stable"
     state: present
 - name: Install Docker pakages
   become: yes
