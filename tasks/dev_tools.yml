@@ -5,14 +5,14 @@
     cache_valid_time: 3600
 - name: Setting variables
   set_fact:
-    docker_script: "~/Download/get-docker.sh"
-- name: Download docker script
+    docker_gpg_key: "~/Download/docker_gpg.txt"
+- name: Install required system packages
+    apt: name={{ item }} state=latest update_cache=no
+    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
+- name: Download GPG key
   get_url:
-    url:  https://get.docker.com
-    dest: "{{ docker_script }}"
-- name: Run docker installation script
-  shell: "sh {{ docker_script }}"
-
+    url: https://download.docker.com/linux/debian/gpg
+    dest: "{{ docker_gpg_key }}"
 
 #- name: Install apache httpd  (state=present is optional)
 #  apt:
