@@ -5,13 +5,14 @@
     cache_valid_time: 3600
 - name: Setting variables
   set_fact:
-    docker_gpg_key: "~/Download/docker_gpg.txt"
+    docker_gpg_key: "~/Downloads/docker_gpg.txt"
 - name: Install required system packages
+  become: yes
   apt:
     name: "{{ item }}"
     state: latest
     update_cache: no
-  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
+  loop: [ 'vim', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
 - name: Download GPG key
   get_url:
     url: https://download.docker.com/linux/debian/gpg
