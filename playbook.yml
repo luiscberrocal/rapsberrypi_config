@@ -26,3 +26,6 @@
 
     - name: Install development tools
       include_tasks: ./tasks/dev_tools.yml
+      when: 1 == 3
+    - name: Testing
+      include_tasks: ./tasks/testing.yml

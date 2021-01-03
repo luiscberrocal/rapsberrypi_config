@@ -3,8 +3,15 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
+- name: Setting variables
+  set_fact:
+    docker_script: "~/Download/get-docker.sh"
 - name: Download docker script
-  shell: "curl -fsSL https://get.docker.com -o get-docker.sh"
+  get_url:
+    url:  https://get.docker.com
+    dest: "{{ docker_script }}"
+- name: Run docker installation script
+  shell: "sh {{ docker_script }}"
 
 
 #- name: Install apache httpd  (state=present is optional)

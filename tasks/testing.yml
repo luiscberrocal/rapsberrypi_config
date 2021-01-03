@@ -1,0 +1,5 @@
+- name: Test for docker installed
+  shell: "dockerX --version"
+  register: docker_installation
+- debug:
+    msg: "{{ docker_installation }}"
