@@ -5,7 +5,7 @@
     cache_valid_time: 3600
 - name: Setting variables
   set_fact:
-    docker_gpg_key: "~/Downloads/docker_gpg.txt"
+    docker_gpg_key: "./output/docker_gpg.txt"
 - name: Install required system packages
   become: yes
   apt:
@@ -18,6 +18,7 @@
     url: https://download.docker.com/linux/debian/gpg
     dest: "{{ docker_gpg_key }}"
 - name: Add Apt signing key on remote server to keyring
+  become: yes
   apt_key:
     file: "{{ docker_gpg_key }}"
     state: present
