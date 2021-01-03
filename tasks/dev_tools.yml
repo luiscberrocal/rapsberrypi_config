@@ -1,0 +1,27 @@
+- name: Rapsberry Pi Configuration
+  hosts: localhost
+  tasks:
+#    - include_vars:
+#        file: "./cookiecutter/cookiecutter-config.yml"
+#        name: cc
+#    - include_vars:
+#        file: "./.secrets/credentials.yml"
+#        name: credentials
+#    - name: Setting facts
+#      set_fact:
+#        django_project_slug: "{{ cc.default_context.project_slug }}"
+#        django_project_name: "{{ cc.default_context.project_name }}"
+#        pycharm_project_folder: "/Users/luiscberrocal/PycharmProjects"
+#    - name: Setting folders
+#      set_fact:
+#        ansible_project_folder: "{{ pycharm_project_folder }}/django_ansible_config"
+#        django_project_folder: "{{ pycharm_project_folder }}/{{ django_project_slug }}"
+#        github_repo: "https://github.com/luiscberrocal/{{django_project_slug}}.git"
+#        github_token_file: "{{ pycharm_project_folder }}/django_ansible_config/.secrets/github_token.txt"
+#        aws_staging_bucket: "{{ django_project_slug | replace('_','-') }}-staging-bucket"
+#        aws_staging_user: "{{ django_project_slug | replace('_','-') }}-staging-user"
+#        aws_staging_group: "{{ django_project_slug | replace('_','-') }}-staging-group"
+#        database_backup_folder: "/Users/luiscberrocal//Dropbox/Temp"
+
+    - name: Install development tools
+      include_tasks: ./tasks/dev_tools.yml
