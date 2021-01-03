@@ -1,4 +1,5 @@
 - name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  become: yes
   apt:
     update_cache: yes
     cache_valid_time: 3600
