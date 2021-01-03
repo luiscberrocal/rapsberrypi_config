@@ -1,0 +1,22 @@
+---
+version: "2.1"
+services:
+  transmission:
+    image: ghcr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Panama
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - USER=Batman #optional
+      - PASS=C4tW0m4nRules #optional
+    volumes:
+      - /media/pi/AB1C-3C5B/media/transmission:/config
+      - /media/pi/AB1C-3C5B/media/downloads:/downloads
+      - /media/pi/AB1C-3C5B/media/watch:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
