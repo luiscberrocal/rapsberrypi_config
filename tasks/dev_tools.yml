@@ -7,11 +7,11 @@
   set_fact:
     docker_gpg_key: "~/Download/docker_gpg.txt"
 - name: Install required system packages
-    apt:
-      name: {{ item }}
-      state: latest
-      update_cache: no
-    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: no
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'gnupg-agent']
 - name: Download GPG key
   get_url:
     url: https://download.docker.com/linux/debian/gpg
